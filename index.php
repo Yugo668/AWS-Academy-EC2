@@ -1,4 +1,8 @@
 <?php
+// Permitir subida de imágenes de hasta 10MB
+ini_set('upload_max_filesize', '10M');
+ini_set('post_max_size', '12M');
+
 require 'vendor/autoload.php';
 
 use Aws\S3\S3Client;
@@ -6,8 +10,8 @@ use Aws\DynamoDb\DynamoDbClient;
 
 // Configuración inicial de AWS
 $region = 'us-east-1';
-$bucketName = 'amazon-s3-proyecto'; // Verifica que coincida exactamente con tu bucket en S3
-$tableName = 'publicaciones';        // Verifica que coincida con tu tabla en DynamoDB
+$bucketName = 'amazon-s3-proyecto'; // Verifica tu bucket en S3
+$tableName = 'publicaciones';        // Verifica tu tabla en DynamoDB
 
 // Inicializar clientes usando IAM LabRole (autenticación automática en EC2)
 $s3 = new S3Client([
